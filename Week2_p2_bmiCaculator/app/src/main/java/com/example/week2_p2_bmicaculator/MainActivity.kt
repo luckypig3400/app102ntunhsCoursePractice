@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         var weight = weightInput.text.toString().toDouble()
 
         var bmi = weight / (height * height)
+        // https://stackoverflow.com/questions/49011924/round-double-to-1-decimal-place-kotlin-from-0-044999-to-0-1
+        bmi = String.format("%.3f", bmi).toDouble()
 
         if(bmi < 18.5){
             output.text = bmi.toString() + " 體重過輕"
