@@ -38,6 +38,16 @@ class MainActivity : AppCompatActivity() {
 
         // EventListener for spinner1 (unnecessary)
         spinner1.onItemSelectedListener = SpinnerSelectedListener_spinner1
+
+        // Generate items for spinner2
+        var items2 = arrayOfNulls<String>(6969)
+        for (i in 0..items2.size - 1) {
+            items2[i] = "第" + (i+1) + "號"
+        }
+        // Connect the content with ArrayAdapter for spinner2
+        val adapterSpinner2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, items2)
+        // Bind Adapter to Spinner2
+        spinner2.adapter = adapterSpinner2
     }
 
     // EventListener for spinner1 (unnecessary)
@@ -45,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View, pos: Int, id: Long) {
                 // 選到時做的事 (pos會傳回第N個整數)
-                debugInfo.text = "Spinner1 eListener:"+parent?.selectedItem.toString()
+                debugInfo.text = "Spinner1 eListener:" + parent?.selectedItem.toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
