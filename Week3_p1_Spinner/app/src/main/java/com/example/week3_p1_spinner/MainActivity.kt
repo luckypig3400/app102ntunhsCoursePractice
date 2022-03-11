@@ -42,12 +42,21 @@ class MainActivity : AppCompatActivity() {
         // Generate items for spinner2
         var items2 = arrayOfNulls<String>(6969)
         for (i in 0..items2.size - 1) {
-            items2[i] = "第" + (i+1) + "號"
+            items2[i] = "第" + (i + 1) + "號"
         }
         // Connect the content with ArrayAdapter for spinner2
         val adapterSpinner2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, items2)
         // Bind Adapter to Spinner2
         spinner2.adapter = adapterSpinner2
+
+        // Bind button1 onClicke Listener
+        button1.setOnClickListener(btn1Listener)
+    }
+
+    // EventListener for button1
+    private var btn1Listener = View.OnClickListener {
+        output.text = "您選擇的為:\n[" + spinner1.getSelectedItemPosition() + "]" + spinner1.getSelectedItem() +
+                "\n[" + spinner2.getSelectedItemPosition() + "]" + spinner2.getSelectedItem()
     }
 
     // EventListener for spinner1 (unnecessary)
