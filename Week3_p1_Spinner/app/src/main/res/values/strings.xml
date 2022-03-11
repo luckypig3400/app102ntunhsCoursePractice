@@ -2,7 +2,11 @@
     <string name="app_name">Week3_p1_Spinner</string>
 
     <string-array name="spinner1_content">
-        <item>Male</item>
-        <item>Female</item>
+        <item>一年級</item>
+        <item>二年級</item>
+        <item>三年級</item>
+        <item>四年級</item>
+        <item> 碩一 </item>
+        <item> 碩二 </item>
     </string-array>
 </resources>

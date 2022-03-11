@@ -24,17 +24,17 @@ class MainActivity : AppCompatActivity() {
         output = findViewById(R.id.tv1)
 
         // Connect the content with ArrayAdapter
-        var adapter_spinner1 = ArrayAdapter.createFromResource(
+        var adapterSpinner1 = ArrayAdapter.createFromResource(
             this,
             R.array.spinner1_content,
             android.R.layout.simple_spinner_item
         )
 
         // Set style for spinner1 (unnecessary)
-        adapter_spinner1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        adapterSpinner1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         // Bind the adapter to spinner1
-        spinner1.adapter = adapter_spinner1
+        spinner1.adapter = adapterSpinner1
 
     }
 }
