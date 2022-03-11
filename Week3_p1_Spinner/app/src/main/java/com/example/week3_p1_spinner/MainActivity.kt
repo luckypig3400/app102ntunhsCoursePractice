@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         spinner1.adapter = adapterSpinner1
 
         // EventListener for spinner1 (unnecessary)
-        spinner1.setOnItemSelectedListener(SpinnerSelectedListener_spinner1)
+        spinner1.onItemSelectedListener = SpinnerSelectedListener_spinner1
     }
 
     // EventListener for spinner1 (unnecessary)
