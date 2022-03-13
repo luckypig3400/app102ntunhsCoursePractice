@@ -25,11 +25,23 @@ class MainActivity : AppCompatActivity() {
         imgBtn = findViewById(R.id.imageButton)
         output = findViewById(R.id.output)
 
-        output.text = bingoNumber.toString()
+        // Bind onClick Event Listener to imageButton
+        imgBtn.setOnClickListener(buttonBingoGame)
     }
 
-//    private var buttonBingoGame = View.OnClickListener {
-//
-//    }
+    private var buttonBingoGame = View.OnClickListener {
+        var num = input.text.toString().toInt()
+
+        if(num > bingoNumber){
+            output.text = "數值太大"
+        }else if(num == bingoNumber){
+            output.text = "Bingo~!"
+        }else{
+            output.text = "數值太小"
+        }
+
+    }
 
 }
+
+// 試設計一 Bingo 遊戲，讓使用者輸入 1~100 間的一個值，並提示「數值太大」、「數值太小」或「 Bingo 」
