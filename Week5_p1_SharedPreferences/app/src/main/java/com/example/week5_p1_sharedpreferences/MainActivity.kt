@@ -32,7 +32,9 @@ class MainActivity : AppCompatActivity() {
         var string2write = MySetting.getString("StoredData", "")
         string2write += input.text.toString() + "\n"
 
-        MySetting.edit().putString("StoredData",string2write)
+        MySetting.edit()
+            .putString("StoredData", string2write)
+            .commit()
     }
     
     private var showBtnClicked = View.OnClickListener {
