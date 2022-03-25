@@ -31,16 +31,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val myCheckBoxes = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-        when(buttonView.id){
-            R.id.checkBox1 -> {
-                output.text = checkBox1.text.toString() + "已選取"
-            }
-            R.id.checkBox2 -> {
-                output.text = checkBox2.text.toString() + "已選取"
-            }
-            R.id.checkBox3 -> {
-                output.text = checkBox3.text.toString() + "已選取"
-            }
-        }
+        val currentCheckBox: CheckBox = findViewById(buttonView.id)
+        output.text = currentCheckBox.text.toString() + "已選取"
     }
 }
