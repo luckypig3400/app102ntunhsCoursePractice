@@ -25,12 +25,22 @@ class MainActivity : AppCompatActivity() {
         checkBox3 = findViewById(R.id.checkBox3)
 
         // 設定CheckBox元件的Listener事件
-        checkBox1.setOnCheckedChangeListener(myCheckBox1)
+        checkBox1.setOnCheckedChangeListener(myCheckBoxes)
+        checkBox2.setOnCheckedChangeListener(myCheckBoxes)
+        checkBox3.setOnCheckedChangeListener(myCheckBoxes)
     }
 
-    private val myCheckBox1 = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-        if(isChecked){
-            output.text = checkBox1.text.toString() + "已選取"
+    private val myCheckBoxes = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+        when(buttonView.id){
+            R.id.checkBox1 -> {
+                output.text = checkBox1.text.toString() + "已選取"
+            }
+            R.id.checkBox2 -> {
+                output.text = checkBox2.text.toString() + "已選取"
+            }
+            R.id.checkBox3 -> {
+                output.text = checkBox3.text.toString() + "已選取"
+            }
         }
     }
 }
