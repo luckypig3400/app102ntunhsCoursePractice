@@ -2,10 +2,8 @@ package com.example.week4_p2_CheckBox
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.CompoundButton
-import android.widget.TextView
+import android.view.View
+import android.widget.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var output: TextView
@@ -28,10 +26,27 @@ class MainActivity : AppCompatActivity() {
         checkBox1.setOnCheckedChangeListener(myCheckBoxes)
         checkBox2.setOnCheckedChangeListener(myCheckBoxes)
         checkBox3.setOnCheckedChangeListener(myCheckBoxes)
+
+        button.setOnClickListener(btnClicked)
     }
 
     private val myCheckBoxes = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
         val currentCheckBox: CheckBox = findViewById(buttonView.id)
         output.text = currentCheckBox.text.toString() + "已選取"
+    }
+
+    private val btnClicked = View.OnClickListener {
+
+        output.text = "您已選擇:\n"
+
+        if (checkBox1.isChecked) {
+            output.text = output.text.toString() + checkBox1.text.toString() + "\n"
+        }
+        if (checkBox2.isChecked) {
+            output.text = output.text.toString() + checkBox2.text.toString() + "\n"
+        }
+        if (checkBox3.isChecked) {
+            output.text = output.text.toString() + checkBox3.text.toString() + "\n"
+        }
     }
 }
