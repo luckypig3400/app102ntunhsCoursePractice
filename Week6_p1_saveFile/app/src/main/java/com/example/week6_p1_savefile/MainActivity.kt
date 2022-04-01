@@ -37,20 +37,8 @@ class MainActivity : AppCompatActivity() {
             dirLocation.mkdirs()
         }
 
-        val bw: BufferedWriter
-        try {
-            bw = BufferedWriter(OutputStreamWriter(FileOutputStream(file1Name), "UTF-8"))
-            bw.write("這是第一列\n")
-            bw.write("這是第二列\n")
-            bw.write("這是第三列\n")
-            bw.close()
-            // output.text = "檔案成功存儲"
-        } catch (e: IOException) {
-            e.printStackTrace()
-            output.text = e.toString()
-        }
-
         loadFileBtn.setOnClickListener(loadFileBtnClicked)
+        saveFileBtn.setOnClickListener(saveFileBtnClicked)
     }
 
     private val loadFileBtnClicked = View.OnClickListener {
@@ -69,6 +57,21 @@ class MainActivity : AppCompatActivity() {
             output.text = fileContent
         } catch (e: IOException) {
             e.printStackTrace()
+        }
+    }
+
+    private val saveFileBtnClicked = View.OnClickListener {
+        val bw: BufferedWriter
+        try {
+            bw = BufferedWriter(OutputStreamWriter(FileOutputStream(file1Name), "UTF-8"))
+
+            var line2write = input.text.toString()
+            bw.write(line2write)
+            bw.close()
+            // output.text = "檔案成功存儲"
+        } catch (e: IOException) {
+            e.printStackTrace()
+            output.text = e.toString()
         }
     }
 }
