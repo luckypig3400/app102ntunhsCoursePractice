@@ -44,12 +44,31 @@ class MainActivity : AppCompatActivity() {
             bw.write("這是第二列\n")
             bw.write("這是第三列\n")
             bw.close()
-            output.text = "檔案成功存儲"
+            // output.text = "檔案成功存儲"
         } catch (e: IOException) {
             e.printStackTrace()
             output.text = e.toString()
         }
 
+        loadFileBtn.setOnClickListener(loadFileBtnClicked)
     }
 
+    private val loadFileBtnClicked = View.OnClickListener {
+        val br: BufferedReader
+        var fileContent: String = ""
+
+        try {
+            br = BufferedReader(InputStreamReader(FileInputStream(file1Name), "UTF-8"))
+            var currentLine = br.readLine()
+
+            while (currentLine != null){
+                fileContent += currentLine + "\n"
+                currentLine = br.readLine()
+            }
+            br.close()
+            output.text = fileContent
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
 }
