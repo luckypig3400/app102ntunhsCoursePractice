@@ -63,9 +63,10 @@ class MainActivity : AppCompatActivity() {
     private val saveFileBtnClicked = View.OnClickListener {
         val bw: BufferedWriter
         try {
-            bw = BufferedWriter(OutputStreamWriter(FileOutputStream(file1Name), "UTF-8"))
+            bw = BufferedWriter(OutputStreamWriter(FileOutputStream(file1Name, true), "UTF-8"))
+            // Set true to use append mode in writing file
 
-            var line2write = input.text.toString()
+            var line2write = input.text.toString() + "\n"
             bw.write(line2write)
             bw.close()
             // output.text = "檔案成功存儲"
