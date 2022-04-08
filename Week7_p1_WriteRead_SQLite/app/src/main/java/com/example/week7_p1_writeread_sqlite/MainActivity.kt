@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.database.sqlite.SQLiteDatabase
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     private lateinit var input: EditText
@@ -50,6 +51,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val readDBbuttonClicked = View.OnClickListener {
+        val MyDBhp = MyDBHelper(applicationContext, DB_file, null,1)
+        val MyDB: SQLiteDatabase
+        MyDB = MyDBhp.readableDatabase
 
+        val selectResult = MyDB.query(
+            true, DB_table, arrayOf("name", "sex" , "address"),
+            null,null, null, null, null, null
+        )
+
+        if(selectResult.count === 0){
+            output.text = "No Data"
+            Toast.makeText(this, "資料庫內沒有資料", Toast.LENGTH_LONG).show()
+        }else{
+            selectResult.moveToFirst();
+            output.text = selectResult.getString(0) + "\t" +selectResult.getString(1) + "\t" + selectResult.getString(2)
+
+            while (selectResult.moveToNext()){
+                output.append("\n" + selectResult.getString(0) + "\t" +selectResult.getString(1) + "\t" + selectResult.getString(2))
+            }
+        }
     }
 }
