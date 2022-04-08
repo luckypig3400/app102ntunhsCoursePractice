@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.database.sqlite.SQLiteDatabase
 import android.widget.Toast
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
     private lateinit var input: EditText
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         val MyDBhp = MyDBHelper(applicationContext, DB_file, null, 1)
 
         // set SQL command for Create Table
-        MyDBhp.sCreateTableCommand = "CREATE TABLE" + DB_table + "(" +
+        MyDBhp.sCreateTableCommand = "CREATE TABLE " + DB_table + "(" +
                 "id INTEGER PRIMARY KEY," +
                 "name TEXT NOT NULL," +
                 "sex TEXT," +
@@ -53,23 +54,28 @@ class MainActivity : AppCompatActivity() {
     private val readDBbuttonClicked = View.OnClickListener {
         val MyDBhp = MyDBHelper(applicationContext, DB_file, null,1)
         val MyDB: SQLiteDatabase
-        MyDB = MyDBhp.readableDatabase
+        MyDB = MyDBhp.writableDatabase
 
-        val selectResult = MyDB.query(
-            true, DB_table, arrayOf("name", "sex" , "address"),
-            null,null, null, null, null, null
-        )
+        try {
+            val selectResult = MyDB.query(
+                true, DB_table, arrayOf("name", "sex" , "address"),
+                null,null, null, null, null, null
+            )
 
-        if(selectResult.count === 0){
-            output.text = "No Data"
-            Toast.makeText(this, "資料庫內沒有資料", Toast.LENGTH_LONG).show()
-        }else{
-            selectResult.moveToFirst();
-            output.text = selectResult.getString(0) + "\t" +selectResult.getString(1) + "\t" + selectResult.getString(2)
+            if(selectResult.count === 0){
+                output.text = "No Data"
+                Toast.makeText(this, "資料庫內沒有資料", Toast.LENGTH_LONG).show()
+            }else{
+                selectResult.moveToFirst();
+                output.text = selectResult.getString(0) + "\t" +selectResult.getString(1) + "\t" + selectResult.getString(2)
 
-            while (selectResult.moveToNext()){
-                output.append("\n" + selectResult.getString(0) + "\t" +selectResult.getString(1) + "\t" + selectResult.getString(2))
+                while (selectResult.moveToNext()){
+                    output.append("\n" + selectResult.getString(0) + "\t" +selectResult.getString(1) + "\t" + selectResult.getString(2))
+                }
             }
+        }catch (allException: Exception){
+            output.text = allException.toString()
+            // https://stackoverflow.com/questions/36760489/how-to-catch-many-exceptions-at-the-same-time-in-kotlin
         }
     }
 }
