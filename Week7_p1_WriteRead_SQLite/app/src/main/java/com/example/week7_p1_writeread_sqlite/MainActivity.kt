@@ -49,7 +49,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val writeDBbuttonClicked = View.OnClickListener {
-        
+        val MyDBhp = MyDBHelper(applicationContext, DB_file, null, 1)
+        val MyDB: SQLiteDatabase
+        MyDB = MyDBhp.writableDatabase
+
+        // Declare a ContentValuess
+        val newRow = ContentValues()
+
+        // 將要新增的欄位"name","sex"與"address"，放入ContentValues中
+        newRow.put("name", input.text.toString())
+        newRow.put("sex", "")
+        newRow.put("address", "")
+
+        try {
+            // Insert ContentValues into DB Table
+            MyDB.insert(DB_table, null, newRow)
+        } catch (allException: Exception) {
+            output.text = allException.toString()
+        }
     }
 
     private val readDBbuttonClicked = View.OnClickListener {
@@ -81,6 +98,8 @@ class MainActivity : AppCompatActivity() {
                     )
                 }
             }
+
+            selectResult.close()
         } catch (allException: Exception) {
             output.text = allException.toString()
             // https://stackoverflow.com/questions/36760489/how-to-catch-many-exceptions-at-the-same-time-in-kotlin
