@@ -1,5 +1,6 @@
 package com.example.week7_p1_writeread_sqlite
 
+import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -48,32 +49,39 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val writeDBbuttonClicked = View.OnClickListener {
-
+        
     }
 
     private val readDBbuttonClicked = View.OnClickListener {
-        val MyDBhp = MyDBHelper(applicationContext, DB_file, null,1)
+        val MyDBhp = MyDBHelper(applicationContext, DB_file, null, 1)
         val MyDB: SQLiteDatabase
         MyDB = MyDBhp.writableDatabase
 
         try {
             val selectResult = MyDB.query(
-                true, DB_table, arrayOf("name", "sex" , "address"),
-                null,null, null, null, null, null
+                true, DB_table, arrayOf("name", "sex", "address"),
+                null, null, null, null, null, null
             )
 
-            if(selectResult.count === 0){
+            if (selectResult.count === 0) {
                 output.text = "No Data"
                 Toast.makeText(this, "資料庫內沒有資料", Toast.LENGTH_LONG).show()
-            }else{
+            } else {
                 selectResult.moveToFirst();
-                output.text = selectResult.getString(0) + "\t" +selectResult.getString(1) + "\t" + selectResult.getString(2)
+                output.text =
+                    selectResult.getString(0) + "\t" + selectResult.getString(1) + "\t" + selectResult.getString(
+                        2
+                    )
 
-                while (selectResult.moveToNext()){
-                    output.append("\n" + selectResult.getString(0) + "\t" +selectResult.getString(1) + "\t" + selectResult.getString(2))
+                while (selectResult.moveToNext()) {
+                    output.append(
+                        "\n" + selectResult.getString(0) + "\t" + selectResult.getString(1) + "\t" + selectResult.getString(
+                            2
+                        )
+                    )
                 }
             }
-        }catch (allException: Exception){
+        } catch (allException: Exception) {
             output.text = allException.toString()
             // https://stackoverflow.com/questions/36760489/how-to-catch-many-exceptions-at-the-same-time-in-kotlin
         }
