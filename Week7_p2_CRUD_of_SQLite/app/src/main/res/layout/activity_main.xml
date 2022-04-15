@@ -7,12 +7,105 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/idlabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:text="ID:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/nameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Name:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idlabel" />
+
+    <EditText
+        android:id="@+id/idInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="ID(number)"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toEndOf="@+id/nameLabel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/nameInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Name(any text)"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toEndOf="@+id/nameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/idInput" />
+
+    <Button
+        android:id="@+id/insertButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:text="新增"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameInput" />
+
+    <Button
+        android:id="@+id/updateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="#FFEB3B"
+        android:text="修改"
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@+id/insertButton"
+        app:layout_constraintTop_toBottomOf="@+id/nameInput" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="#F44336"
+        android:text="刪除"
+        app:layout_constraintStart_toEndOf="@+id/updateButton"
+        app:layout_constraintTop_toBottomOf="@+id/nameInput" />
+
+    <Button
+        android:id="@+id/readDataButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="#4CAF50"
+        android:text="讀取"
+        app:layout_constraintStart_toEndOf="@+id/deleteButton"
+        app:layout_constraintTop_toBottomOf="@+id/nameInput" />
+
+    <TextView
+        android:id="@+id/output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/insertButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
