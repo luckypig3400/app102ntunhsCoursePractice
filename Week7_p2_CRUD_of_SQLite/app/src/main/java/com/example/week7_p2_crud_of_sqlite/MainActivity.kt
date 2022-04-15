@@ -61,6 +61,30 @@ class MainActivity : AppCompatActivity() {
         insertBtn.setOnClickListener(insertRowDataFunction)
 
 
+        // Update DB data function
+        val updateRowDataFunction = View.OnClickListener {
+            var rowId = idInput.text.toString().toInt()
+            // 宣告一ContentValues
+            val updatedRow = ContentValues()
+            updatedRow.put("id", rowId)
+            updatedRow.put("name", nameInput.text.toString())
+            // 將ContentValues中的資料，放至資料表中
+            MyDB.update(
+                DB_TABLE, updatedRow,
+                "id='" + rowId + "'", null
+            )
+        }
+        updateBtn.setOnClickListener(updateRowDataFunction)
+
+
+        // Delete DB data function
+        val deleteRowDataFuntion = View.OnClickListener {
+            var rowId = idInput.text.toString().toInt()
+            MyDB.delete(DB_TABLE, "id='" + rowId + "'", null)
+        }
+        deleteBtn.setOnClickListener(deleteRowDataFuntion)
+
+
         // Read DB data function
         val querySQLiteDBfunction = View.OnClickListener {
             val c = MyDB.query(
