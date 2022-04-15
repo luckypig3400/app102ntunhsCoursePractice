@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var queryBtn: Button
     lateinit var insertBtn: Button
     lateinit var updateBtn: Button
+    lateinit var deleteBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         queryBtn = findViewById(R.id.querySQLiteButton)
         insertBtn = findViewById(R.id.insertDBbutton)
         updateBtn = findViewById(R.id.updateDBbutton)
+        deleteBtn = findViewById(R.id.deleteRowDataButton)
 
 
         // 步驟2-1. 主程式 (建立資料庫)
@@ -44,6 +46,7 @@ class MainActivity : AppCompatActivity() {
             // 步驟2-3. 主程式 (新增記錄)
             // 宣告一ContentValues
             val newRow = ContentValues()
+            newRow.put("id", 1)
             // 將要新增的欄位"name","sex"與"address"，放入ContentValues中
             newRow.put("name", "吳曉美")
             newRow.put("sex", "女")
@@ -88,6 +91,12 @@ class MainActivity : AppCompatActivity() {
             )
         }
         updateBtn.setOnClickListener(updateRowDataFunction)
+
+
+        val deleteRowDataFuntion = View.OnClickListener {
+            MyDB.delete(DB_TABLE, "id='" + 1 + "'", null)
+        }
+        deleteBtn.setOnClickListener(deleteRowDataFuntion)
 
     }
 
