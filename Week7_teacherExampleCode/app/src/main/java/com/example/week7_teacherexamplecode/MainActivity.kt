@@ -12,12 +12,16 @@ import android.widget.Toast
 class MainActivity : AppCompatActivity() {
     lateinit var output: TextView
     lateinit var queryBtn: Button
+    lateinit var insertBtn: Button
+    lateinit var updateBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         output = findViewById(R.id.output)
         queryBtn = findViewById(R.id.querySQLiteButton)
+        insertBtn = findViewById(R.id.insertDBbutton)
+        updateBtn = findViewById(R.id.updateDBbutton)
 
 
         // 步驟2-1. 主程式 (建立資料庫)
@@ -36,15 +40,18 @@ class MainActivity : AppCompatActivity() {
         MyDB = friDbHp.writableDatabase
 
 
-        // 步驟2-3. 主程式 (新增記錄)
-        // 宣告一ContentValues
-        val newRow = ContentValues()
-        // 將要新增的欄位"name","sex"與"address"，放入ContentValues中
-        newRow.put("name", "吳曉美")
-        newRow.put("sex", "女")
-        newRow.put("address", "測試地址")
-        // 將ContentValues中的資料，放至資料表中
-        MyDB.insert(DB_TABLE, null, newRow)
+        val insertRowDataFunction = View.OnClickListener {
+            // 步驟2-3. 主程式 (新增記錄)
+            // 宣告一ContentValues
+            val newRow = ContentValues()
+            // 將要新增的欄位"name","sex"與"address"，放入ContentValues中
+            newRow.put("name", "吳曉美")
+            newRow.put("sex", "女")
+            newRow.put("address", "測試地址")
+            // 將ContentValues中的資料，放至資料表中
+            MyDB.insert(DB_TABLE, null, newRow)
+        }
+        insertBtn.setOnClickListener(insertRowDataFunction)
 
 
         val querySQLiteDBfunction = View.OnClickListener{
@@ -64,21 +71,23 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
         queryBtn.setOnClickListener(querySQLiteDBfunction)
 
-        // 步驟2-4. 主程式 (更新記錄)
-        // 宣告一ContentValues
-        val updatedRow = ContentValues()
-        // 將要新增的欄位"name","sex"與"address"，放入ContentValues中
-        updatedRow.put("name", "早安咖啡女孩")
-        updatedRow.put("sex", "女")
-        updatedRow.put("address", "台北市大安區早安咖啡館")
-        // 將ContentValues中的資料，放至資料表中
-        MyDB.update(
-            DB_TABLE, updatedRow,
-            "id='" + 1 + "'", null
-        )
+        val updateRowDataFunction = View.OnClickListener {
+            // 步驟2-4. 主程式 (更新記錄)
+            // 宣告一ContentValues
+            val updatedRow = ContentValues()
+            // 將要新增的欄位"name","sex"與"address"，放入ContentValues中
+            updatedRow.put("name", "早安咖啡女孩")
+            updatedRow.put("sex", "女")
+            updatedRow.put("address", "台北市大安區早安咖啡館")
+            // 將ContentValues中的資料，放至資料表中
+            MyDB.update(
+                DB_TABLE, updatedRow,
+                "id='" + 1 + "'", null
+            )
+        }
+        updateBtn.setOnClickListener(updateRowDataFunction)
 
     }
 
