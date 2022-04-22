@@ -1,4 +1,4 @@
-package com.example.week9_intent_and_multiactivity
+package com.example.Week9_Example1_one_Activity_MultiLayouts
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
