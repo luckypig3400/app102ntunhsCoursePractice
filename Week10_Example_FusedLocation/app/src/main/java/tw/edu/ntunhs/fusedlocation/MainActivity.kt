@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.snackbar.Snackbar
+import java.text.SimpleDateFormat
 import java.util.*
 
 private lateinit var textView1: TextView
@@ -98,9 +99,17 @@ class MainActivity : AppCompatActivity() {
             val location = intent.getParcelableExtra<Location>(ForegroundService.EXTRA_LOCATION)
             if (location != null) {
                 //Toast.makeText(context, "("+location.longitude+", "+location.latitude+")", Toast.LENGTH_SHORT).show();
-                textView1.text = "("+location.longitude+", "+location.latitude+")"
+                textView1.text = "("+location.longitude+", "+location.latitude+ ", " + location.altitude + ", " + location.accuracy + ", " + convertLongToTime(location.time) +  ")"
+                // https://developer.android.com/reference/kotlin/android/location/Location#gettime
             }
         }
+
+        private fun convertLongToTime(time: Long): Any? {
+            val date = Date(time)
+            val format = SimpleDateFormat("yyyy.MM.dd HH:mm:ss")
+            return format.format(date)
+        }
+        // https://stackoverflow.com/questions/49551461/how-can-i-convert-a-long-value-to-date-time-and-convert-current-time-to-long-kot
     }
 // End ForeGround Service   Android 10+ 定位需要改放在前景服務中	/////////////
 
