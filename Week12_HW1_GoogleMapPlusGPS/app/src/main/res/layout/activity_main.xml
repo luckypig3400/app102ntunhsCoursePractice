@@ -1,20 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Hello World!" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/longtitudeOutput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="經度:"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/latitudeOutput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="緯度:"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/heightOutput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="高度:"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/addressOutput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="地址:"
+        android:textSize="18sp" />
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        map:cameraBearing="45"
+        map:cameraTargetLat="25.118601"
+        map:cameraTargetLng="121.520958"
+        map:cameraTilt="0"
+        map:cameraZoom="13"
+        map:mapType="normal"
+        tools:context=".MapsActivity" />
+
+</LinearLayout>
