@@ -2,6 +2,7 @@ package com.example.week12_p1_googlemapsactivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -16,8 +17,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
 
+    private lateinit var longtitudeText: TextView
+    private lateinit var latitudeText: TextView
+    private lateinit var heightText: TextView
+    private lateinit var addressText: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        longtitudeText = findViewById(R.id.longtitudeOutput)
+        latitudeText = findViewById(R.id.latitudeOutput)
+        heightText = findViewById(R.id.heightOutput)
+        addressText = findViewById(R.id.addressOutput)
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)

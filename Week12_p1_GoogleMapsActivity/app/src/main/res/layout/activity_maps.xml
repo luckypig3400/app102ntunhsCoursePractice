@@ -8,9 +8,32 @@
     tools:context=".MapsActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/longtitudeOutput"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Google地圖" />
+        android:text="經度:"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/latitudeOutput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="緯度:"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/heightOutput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="高度:"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/addressOutput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="地址:"
+        android:textSize="18sp" />
 
     <fragment
         android:id="@+id/map"
