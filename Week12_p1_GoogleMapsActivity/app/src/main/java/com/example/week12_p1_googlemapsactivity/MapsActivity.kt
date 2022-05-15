@@ -38,12 +38,32 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
+        mMap = googleMap //將googleMap傳給外部變數mMap，讓fun外可以使用地圖
 
-        // Add a marker in Sydney and move the camera
+        initMapToNTUNHS()
+    }
+
+    fun initMapToNTUNHS() {
+        // Add a marker in NTUNHS and move the camera
         val ntunhs = LatLng(25.11787771539104, 121.52147304364689)
         // Taiwan: 23.9037° N, 121.0794° E
         mMap.addMarker(MarkerOptions().position(ntunhs).title("國北護校本部"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ntunhs))
     }
+
+    /*
+    Google Map 顯示位置範例程式碼
+    範例1:
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(LatLng(25.118, 121.521)))
+    範例2:
+        val cameraPosition = CameraPosition.Builder()
+            .target(LatLng(25.118, 121.521)) // Sets the LatLng
+            .zoom(14f) // Sets the zoom
+            .bearing(0f) // Sets the orientation of the camera to east
+            .tilt(0f) // Sets the tilt of the camera to 30 degrees
+            .build() // Creates a CameraPosition from the builder
+        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+
+    // https://developers.google.com/maps/documentation/android-sdk/intro
+     */
 }
