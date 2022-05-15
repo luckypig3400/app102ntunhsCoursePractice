@@ -41,9 +41,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(23.9037, 121.0794)
+        val ntunhs = LatLng(25.11787771539104, 121.52147304364689)
         // Taiwan: 23.9037° N, 121.0794° E
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        mMap.addMarker(MarkerOptions().position(ntunhs).title("國北護校本部"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(ntunhs))
     }
 }
