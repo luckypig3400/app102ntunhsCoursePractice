@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FusedLocation</string>
+    <string name="app_name">GoogleMap與GPS應用</string>
 
     <string name="launch_activity">啟動活動</string>
     <string name="location_unknown">未知的位置</string>
