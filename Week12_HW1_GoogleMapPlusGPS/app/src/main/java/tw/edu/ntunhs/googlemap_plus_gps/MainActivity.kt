@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.IBinder
 import android.provider.Settings
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -146,6 +147,9 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 //Toast.makeText(context, "("+location.longitude+", "+location.latitude+")", Toast.LENGTH_SHORT).show();
                 textView1.text = "("+location.longitude+", "+location.latitude+ ", " + location.altitude + ", " + location.accuracy + ", " + convertLongToTime(location.time) +  ")"
                 // https://developer.android.com/reference/kotlin/android/location/Location#gettime
+
+                textView1.visibility = View.INVISIBLE
+                // https://stackoverflow.com/questions/49402001/how-to-set-visibility-in-kotlin
             }
         }
 
