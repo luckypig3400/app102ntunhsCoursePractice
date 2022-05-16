@@ -1,2 +1,3 @@
 include ':app'
-rootProject.name = "FusedLocation"
+rootProject.name = "Week12_HW1_GoogleMapPlusGPS"
+// https://stackoverflow.com/questions/18276872/change-project-name-on-android-studio
