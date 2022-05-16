@@ -26,6 +26,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 private lateinit var textView1: TextView
+private lateinit var longtitudeOutput: TextView
+private lateinit var latitudeOutput: TextView
+private lateinit var altitudeOutput: TextView
+private lateinit var addressOutput: TextView
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -46,6 +50,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         // 從資源類別R中取得介面元件
         textView1 = findViewById<TextView>(R.id.textView1)
         textView1.text = getString(R.string.no_location_text)
+        longtitudeOutput = findViewById(R.id.longtitudeOutput)
+        latitudeOutput = findViewById(R.id.latitudeOutput)
+        altitudeOutput = findViewById(R.id.heightOutput)
+        addressOutput = findViewById(R.id.addressOutput)
 
         // 檢查是否已取得GPS定位權限
         if (!foregroundPermissionApproved()) {
