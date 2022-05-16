@@ -14,13 +14,21 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
 
 private lateinit var textView1: TextView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnMapReadyCallback {
+
+    private lateinit var mMap: GoogleMap
 
     // Android 10+ 定位需要改放在前景服務中
     /// 廣播接收器 用於偵聽來自服務的廣播。
@@ -44,6 +52,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         myReceiver = MyReceiver()
+
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        val mapFragment = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap //將googleMap傳給外部變數mMap，讓fun外可以使用地圖
+
+        // Add a marker in Taipei 101 and move the camera
+        val taipei101 = LatLng(25.0338, 121.5646)
+        mMap.addMarker(MarkerOptions().position(taipei101).title("Taipei 101(台北101)"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(taipei101))
     }
 
     override fun onStart() {
