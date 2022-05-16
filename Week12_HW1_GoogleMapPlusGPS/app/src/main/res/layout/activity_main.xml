@@ -53,6 +53,6 @@
         map:cameraTilt="0"
         map:cameraZoom="13"
         map:mapType="normal"
-        tools:context=".MapsActivity" />
+        tools:context=".MainActivity" />
 
 </LinearLayout>
