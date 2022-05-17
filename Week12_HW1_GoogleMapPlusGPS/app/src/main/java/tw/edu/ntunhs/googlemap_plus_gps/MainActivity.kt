@@ -3,6 +3,8 @@ package tw.edu.ntunhs.googlemap_plus_gps
 import android.Manifest
 import android.content.*
 import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
@@ -32,6 +34,7 @@ private lateinit var latitudeOutput: TextView
 private lateinit var altitudeOutput: TextView
 private lateinit var addressOutput: TextView
 private lateinit var mMap: GoogleMap
+private lateinit var gc: Geocoder
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -77,6 +80,9 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         val taipei101 = LatLng(25.0338, 121.5646)
         mMap.addMarker(MarkerOptions().position(taipei101).title("Taipei 101(台北101)"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(taipei101))
+
+        // 地址顯示繁體中文
+        gc = Geocoder(this, Locale.TRADITIONAL_CHINESE)
     }
 
     fun moveMapToNTUNHS() {
@@ -169,6 +175,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 altitudeOutput.text = "高度:" + location.altitude
 
                 moveMapToCurrentLocation(location.latitude, location.longitude)
+
+                // 自經緯度取得地址
+                val lstAddress: List<Address> = gc.getFromLocation(location.latitude, location.longitude, 1)
+                addressOutput.text = lstAddress.toString()
+
             }
         }
 
