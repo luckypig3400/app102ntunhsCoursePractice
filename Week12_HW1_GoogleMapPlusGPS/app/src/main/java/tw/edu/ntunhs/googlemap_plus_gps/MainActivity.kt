@@ -178,7 +178,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
                 // 自經緯度取得地址
                 val lstAddress: List<Address> = gc.getFromLocation(location.latitude, location.longitude, 1)
-                addressOutput.text = lstAddress.toString()
+                // 擷取最主要的地理格式[0]
+                addressOutput.text = "地址:" + lstAddress[0].getAddressLine(0) +"\n"
 
             }
         }
