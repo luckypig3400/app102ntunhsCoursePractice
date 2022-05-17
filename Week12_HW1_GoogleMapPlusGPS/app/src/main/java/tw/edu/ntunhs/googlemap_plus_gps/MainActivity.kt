@@ -122,9 +122,9 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onResume() {
         super.onResume()
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(myReceiver, IntentFilter(ForegroundService.ACTION_BROADCAST))
+        LocalBroadcastManager.getInstance(this)
+            .registerReceiver(myReceiver, IntentFilter(ForegroundService.ACTION_BROADCAST))
     }
-
 
     override fun onPause() {
         super.onPause()
@@ -133,7 +133,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 
-// Begin ForeGround Service   Android 10+ 定位需要改放在前景服務中	/////////////
+    // Begin ForeGround Service   Android 10+ 定位需要改放在前景服務中	/////////////
     // 監視服務的連接狀態。
     private val mServiceConnection: ServiceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName, service: IBinder) {
@@ -196,12 +196,16 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 // End ForeGround Service   Android 10+ 定位需要改放在前景服務中	/////////////
 
-// Begin Permission	//////////////////////////////////////////////////////////////////////
+    // Begin Permission	//////////////////////////////////////////////////////////////////////
     private val TAG = "MainActivity"
     private val REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE = 34
+
     // 檢查是否已取得GPS定位權限
     private fun foregroundPermissionApproved(): Boolean {
-        return PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+        return PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
     }
 
     // 請求GPS定位權限
@@ -209,20 +213,35 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         val provideRationale = foregroundPermissionApproved()
 
         if (provideRationale) {
-            Snackbar.make(findViewById(R.id.activity_main), R.string.permission_rationale, Snackbar.LENGTH_LONG)
+            Snackbar.make(
+                findViewById(R.id.activity_main),
+                R.string.permission_rationale,
+                Snackbar.LENGTH_LONG
+            )
                 .setAction(R.string.ok) {
                     // Request permission
-                    ActivityCompat.requestPermissions(this@MainActivity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE)
+                    ActivityCompat.requestPermissions(
+                        this@MainActivity,
+                        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                        REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE
+                    )
                 }.show()
-        }
-        else {
+        } else {
             Log.d(TAG, "Request foreground only permission")
-            ActivityCompat.requestPermissions(this@MainActivity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE)
+            ActivityCompat.requestPermissions(
+                this@MainActivity,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE
+            )
         }
     }
 
     // 請求定位權限的結果(回覆)
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         Log.d(TAG, "onRequestPermissionResult")
 
         when (requestCode) {
@@ -237,7 +256,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
                 else -> {
                     // 權限被拒絕
-                    Snackbar.make(findViewById(R.id.activity_main), R.string.permission_denied_explanation, Snackbar.LENGTH_LONG)
+                    Snackbar.make(
+                        findViewById(R.id.activity_main),
+                        R.string.permission_denied_explanation,
+                        Snackbar.LENGTH_LONG
+                    )
                         .setAction(R.string.settings) {
                             // 在下方彈跳顯示一設定的對話列
                             val intent = Intent()
