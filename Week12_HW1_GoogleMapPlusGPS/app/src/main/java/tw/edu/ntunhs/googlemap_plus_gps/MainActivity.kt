@@ -19,6 +19,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
@@ -30,16 +31,17 @@ private lateinit var longtitudeOutput: TextView
 private lateinit var latitudeOutput: TextView
 private lateinit var altitudeOutput: TextView
 private lateinit var addressOutput: TextView
+private lateinit var mMap: GoogleMap
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
-
-    private lateinit var mMap: GoogleMap
 
     // Android 10+ 定位需要改放在前景服務中
     /// 廣播接收器 用於偵聽來自服務的廣播。
     private lateinit var myReceiver: MyReceiver
+
     /// 對用於獲取位置更新的服務的引用。
     var mService: ForegroundService? = null
+
     /// 跟踪服務的綁定狀態。
     var ServiceFlag = false
 
@@ -153,11 +155,20 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             val location = intent.getParcelableExtra<Location>(ForegroundService.EXTRA_LOCATION)
             if (location != null) {
                 //Toast.makeText(context, "("+location.longitude+", "+location.latitude+")", Toast.LENGTH_SHORT).show();
-                textView1.text = "("+location.longitude+", "+location.latitude+ ", " + location.altitude + ", " + location.accuracy + ", " + convertLongToTime(location.time) +  ")"
+                textView1.text =
+                    "(" + location.longitude + ", " + location.latitude + ", " + location.altitude + ", " + location.accuracy + ", " + convertLongToTime(
+                        location.time
+                    ) + ")"
                 // https://developer.android.com/reference/kotlin/android/location/Location#gettime
 
                 textView1.visibility = View.INVISIBLE
                 // https://stackoverflow.com/questions/49402001/how-to-set-visibility-in-kotlin
+
+                longtitudeOutput.text = "經度:" + location.longitude
+                latitudeOutput.text = "緯度:" + location.latitude
+                altitudeOutput.text = "高度:" + location.altitude
+
+                moveMapToCurrentLocation(location.latitude, location.longitude)
             }
         }
 
@@ -167,6 +178,21 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             return format.format(date)
         }
         // https://stackoverflow.com/questions/49551461/how-can-i-convert-a-long-value-to-date-time-and-convert-current-time-to-long-kot
+
+        fun moveMapToCurrentLocation(in_latitude: Double, in_longtitude: Double) {
+            // Add a marker in current location
+            val currentLocation = LatLng(in_latitude, in_longtitude)
+            mMap.addMarker(MarkerOptions().position(currentLocation).title("您目前所在位置"))
+
+            // 使用另一種寫法，Map的鏡頭縮放等參數均可調整
+            val cameraPosition = CameraPosition.Builder()
+                .target(currentLocation) // Sets the LatLng
+                .zoom(18f) // Sets the zoom
+                .bearing(0f) // Sets the orientation of the camera to east
+                .tilt(0f) // Sets the tilt of the camera to 30 degrees
+                .build() // Creates a CameraPosition from the builder
+            mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+        }
     }
 // End ForeGround Service   Android 10+ 定位需要改放在前景服務中	/////////////
 
