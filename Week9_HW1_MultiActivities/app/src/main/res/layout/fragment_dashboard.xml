@@ -21,12 +21,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/coolButton"
+        android:id="@+id/coolButtonHide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="168dp"
         android:backgroundTint="#FF9800"
         android:text="Go To See Something Cool~"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/text_dashboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -38,9 +39,9 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="有趣吧~我還是第一個Activity~\n點下面按鈕切換到第二個酷炫的Activity"
+        android:text="有趣吧~我還是第一個Activity~\n回到首頁切換到第二個酷炫的Activity"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/coolButton"
+        app:layout_constraintBottom_toTopOf="@+id/coolButtonHide"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

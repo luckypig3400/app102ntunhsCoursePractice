@@ -11,6 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Week9_HW1_MultiActivities">
         <activity
+            android:name=".MainEntryActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".SomethingCoolActivity"
             android:exported="false"
             android:label="@string/title_activity_something_cool"
