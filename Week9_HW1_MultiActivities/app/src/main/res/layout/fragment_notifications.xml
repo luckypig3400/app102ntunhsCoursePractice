@@ -35,7 +35,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="別懷疑~我還是第一個Activity~\回到首頁切換到第三個Map Activity"
+        android:text="別懷疑~我還是第一個Activity~\n回首頁切換到第三個Map Activity"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/text_notifications"
         app:layout_constraintEnd_toEndOf="parent"
