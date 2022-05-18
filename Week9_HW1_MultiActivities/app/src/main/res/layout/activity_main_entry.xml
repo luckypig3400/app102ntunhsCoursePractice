@@ -6,4 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".MainEntryActivity">
 
+    <Button
+        android:id="@+id/navbarActButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:backgroundTint="#9C27B0"
+        android:text="查看帶有導行列的Activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/mapActButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="69dp"
+        android:backgroundTint="#FFC107"
+        android:text="前往Google Map Activity看地圖"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navbarActButton" />
+
+    <Button
+        android:id="@+id/rwdActButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="69dp"
+        android:backgroundTint="#009688"
+        android:text="看第三個有酷東西的Activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mapActButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
