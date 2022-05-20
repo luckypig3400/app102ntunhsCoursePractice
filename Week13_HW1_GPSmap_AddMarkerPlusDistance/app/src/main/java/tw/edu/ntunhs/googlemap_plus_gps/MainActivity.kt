@@ -36,6 +36,16 @@ private lateinit var addressOutput: TextView
 private lateinit var mMap: GoogleMap
 private lateinit var gc: Geocoder
 
+// store current Location as Global var
+private var currantLocation = LatLng(23.9037, 121.0794)
+// Taiwan: 23.9037° N, 121.0794° E
+
+// 學校的經緯度座標
+private val dunhuaElementaryLocation = LatLng(25.0492, 121.5481)
+private val dunhuaJuniorLocation = LatLng(25.0509, 121.5465)
+private val daanLocation = LatLng(25.0320, 121.5430)
+private val ntunhsLocation = LatLng(25.11787771539104, 121.52147304364689)
+
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     // Android 10+ 定位需要改放在前景服務中
@@ -47,12 +57,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     /// 跟踪服務的綁定狀態。
     var ServiceFlag = false
-
-    // 學校的經緯度座標
-    private val dunhuaElementaryLocation = LatLng(25.0492, 121.5481)
-    private val dunhuaJuniorLocation = LatLng(25.0509, 121.5465)
-    private val daanLocation = LatLng(25.0320, 121.5430)
-    private val ntunhsLocation = LatLng(25.11787771539104, 121.52147304364689)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,7 +99,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     fun moveMapToNTUNHS() {
         // Add a marker in NTUNHS and move the camera
-        // Taiwan: 23.9037° N, 121.0794° E
         mMap.addMarker(
             MarkerOptions()
                 .position(ntunhsLocation)
@@ -155,38 +158,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     // https://developers.google.com/maps/documentation/android-sdk/intro
      */
-
-    fun drawLinesOnMap(){
-        val orangelineOpt = PolylineOptions()
-            .width(15f)
-            .color(Color.rgb(255,165,0))
-        val cyanlineOpt = PolylineOptions()
-            .width(15f)
-            .color(Color.CYAN)
-        val graylineOpt = PolylineOptions()
-            .width(12f)
-            .color(Color.GRAY)
-
-        val lineToDaan = ArrayList<LatLng>()
-        lineToDaan.add(ntunhsLocation)
-        lineToDaan.add(daanLocation)
-
-        val lineToDunhuaJunior = ArrayList<LatLng>()
-        lineToDunhuaJunior.add(ntunhsLocation)
-        lineToDunhuaJunior.add(dunhuaJuniorLocation)
-
-        val lineToDunhuaElementary = ArrayList<LatLng>()
-        lineToDunhuaElementary.add(ntunhsLocation)
-        lineToDunhuaElementary.add(dunhuaElementaryLocation)
-
-        orangelineOpt.addAll(lineToDaan)
-        cyanlineOpt.addAll(lineToDunhuaJunior)
-        graylineOpt.addAll(lineToDunhuaElementary)
-
-        mMap.addPolyline(orangelineOpt)
-        mMap.addPolyline(cyanlineOpt)
-        mMap.addPolyline(graylineOpt)
-    }
 
     override fun onStart() {
         super.onStart()
@@ -254,7 +225,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 latitudeOutput.text = "緯度:" + location.latitude
                 altitudeOutput.text = "高度:" + location.altitude
 
-                //moveMapToCurrentLocation(location.latitude, location.longitude)
+                // Update Global var currentLocation
+                currantLocation = LatLng(location.latitude, location.longitude)
+                drawLinesOnMap()
+                moveMapToCurrentLocation(location.latitude, location.longitude)
 
                 // 自經緯度取得地址
                 val lstAddress: List<Address> =
@@ -284,7 +258,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 .bearing(0f) // Sets the orientation of the camera to east
                 .tilt(0f) // Sets the tilt of the camera to 30 degrees
                 .build() // Creates a CameraPosition from the builder
-            mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
         }
     }
 // End ForeGround Service   Android 10+ 定位需要改放在前景服務中	/////////////
@@ -369,4 +343,45 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 // End Permission	////////////////////////////////////////////////////////////////////////
 
+}
+
+fun drawLinesOnMap(){
+    val yellowlineOpt = PolylineOptions()
+        .width(18f)
+        .color(Color.YELLOW)
+    val orangelineOpt = PolylineOptions()
+        .width(15f)
+        .color(Color.rgb(255,165,0))
+    val cyanlineOpt = PolylineOptions()
+        .width(15f)
+        .color(Color.CYAN)
+    val graylineOpt = PolylineOptions()
+        .width(12f)
+        .color(Color.GRAY)
+
+    val lineToNtunhs = ArrayList<LatLng>()
+    lineToNtunhs.add(currantLocation)
+    lineToNtunhs.add(ntunhsLocation)
+
+    val lineToDaan = ArrayList<LatLng>()
+    lineToDaan.add(currantLocation)
+    lineToDaan.add(daanLocation)
+
+    val lineToDunhuaJunior = ArrayList<LatLng>()
+    lineToDunhuaJunior.add(currantLocation)
+    lineToDunhuaJunior.add(dunhuaJuniorLocation)
+
+    val lineToDunhuaElementary = ArrayList<LatLng>()
+    lineToDunhuaElementary.add(currantLocation)
+    lineToDunhuaElementary.add(dunhuaElementaryLocation)
+
+    yellowlineOpt.addAll(lineToNtunhs)
+    orangelineOpt.addAll(lineToDaan)
+    cyanlineOpt.addAll(lineToDunhuaJunior)
+    graylineOpt.addAll(lineToDunhuaElementary)
+
+    mMap.addPolyline(yellowlineOpt)
+    mMap.addPolyline(orangelineOpt)
+    mMap.addPolyline(cyanlineOpt)
+    mMap.addPolyline(graylineOpt)
 }
