@@ -21,9 +21,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
@@ -76,21 +74,67 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap //將googleMap傳給外部變數mMap，讓fun外可以使用地圖
 
-        // Add a marker in Taipei 101 and move the camera
-        val taipei101 = LatLng(25.0338, 121.5646)
-        mMap.addMarker(MarkerOptions().position(taipei101).title("Taipei 101(台北101)"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(taipei101))
-
         // 地址顯示繁體中文
         gc = Geocoder(this, Locale.TRADITIONAL_CHINESE)
+
+        moveMapToNTUNHS()
+        markDaanOnMap()
+        markDunhuaJunior()
+        markDunhuaElementary()
     }
 
     fun moveMapToNTUNHS() {
         // Add a marker in NTUNHS and move the camera
         val ntunhs = LatLng(25.11787771539104, 121.52147304364689)
         // Taiwan: 23.9037° N, 121.0794° E
-        mMap.addMarker(MarkerOptions().position(ntunhs).title("國北護校本部"))
+        mMap.addMarker(
+            MarkerOptions()
+                .position(ntunhs)
+                .title("國北護校本部")
+                .snippet("裡面居然有資訊管理系耶~")
+                .draggable(false))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ntunhs))
+    }
+
+    fun markDaanOnMap() {
+        val daanLocation = LatLng(25.0320, 121.5430)
+
+        mMap.addMarker(
+            MarkerOptions()
+                .title("臺北市立大安高級工業職業學校")
+                .snippet("簡稱大安高工,又名男子監獄")
+                .position(daanLocation)
+                .icon(BitmapDescriptorFactory.fromResource(android.R.drawable.star_big_on))
+                .anchor(0.5f, 0.5f)
+                .draggable(false)
+                .flat(true)
+        )
+//        mMap.animateCamera(CameraUpdateFactory.newLatLng(daanLocation))
+    }
+
+    fun markDunhuaJunior(){
+        val dunhuaJuniorLocation = LatLng(25.0509, 121.5465)
+
+        mMap.addMarker(
+            MarkerOptions()
+                .title("臺北市立敦化國民中學")
+                .snippet("簡稱敦化國中,以資源丙班聞名整個北台灣")
+                .position(dunhuaJuniorLocation)
+                .anchor(0.5f, 0.5f)
+                .draggable(false)
+        )
+    }
+
+    fun markDunhuaElementary(){
+        val dunhuaElementaryLocation = LatLng(25.0492, 121.5481)
+
+        mMap.addMarker(
+            MarkerOptions()
+                .title("臺北市松山區敦化國民小學")
+                .snippet("簡稱敦化國小,以音樂班聞名全台")
+                .position(dunhuaElementaryLocation)
+                .draggable(false)
+        )
     }
     /*
     Google Map 顯示位置範例程式碼
@@ -174,12 +218,13 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 latitudeOutput.text = "緯度:" + location.latitude
                 altitudeOutput.text = "高度:" + location.altitude
 
-                moveMapToCurrentLocation(location.latitude, location.longitude)
+                //moveMapToCurrentLocation(location.latitude, location.longitude)
 
                 // 自經緯度取得地址
-                val lstAddress: List<Address> = gc.getFromLocation(location.latitude, location.longitude, 1)
+                val lstAddress: List<Address> =
+                    gc.getFromLocation(location.latitude, location.longitude, 1)
                 // 擷取最主要的地理格式[0]
-                addressOutput.text = "地址:" + lstAddress[0].getAddressLine(0) +"\n"
+                addressOutput.text = "地址:" + lstAddress[0].getAddressLine(0) + "\n"
 
             }
         }
