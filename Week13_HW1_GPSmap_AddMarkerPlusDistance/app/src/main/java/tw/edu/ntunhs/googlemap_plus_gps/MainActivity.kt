@@ -92,6 +92,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 .position(ntunhs)
                 .title("國北護校本部")
                 .snippet("裡面居然有資訊管理系耶~")
+                .icon(BitmapDescriptorFactory.fromResource(android.R.drawable.btn_star_big_on))
                 .draggable(false))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ntunhs))
     }
