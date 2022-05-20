@@ -26,6 +26,7 @@ import com.google.android.gms.maps.model.*
 import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 private lateinit var textView1: TextView
 private lateinit var longtitudeOutput: TextView
@@ -52,7 +53,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     private val dunhuaJuniorLocation = LatLng(25.0509, 121.5465)
     private val daanLocation = LatLng(25.0320, 121.5430)
     private val ntunhsLocation = LatLng(25.11787771539104, 121.52147304364689)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,6 +89,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         markDaanOnMap()
         markDunhuaJunior()
         markDunhuaElementary()
+
+        drawLinesOnMap()
     }
 
     fun moveMapToNTUNHS() {
@@ -153,6 +155,38 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     // https://developers.google.com/maps/documentation/android-sdk/intro
      */
+
+    fun drawLinesOnMap(){
+        val orangelineOpt = PolylineOptions()
+            .width(15f)
+            .color(Color.rgb(255,165,0))
+        val cyanlineOpt = PolylineOptions()
+            .width(15f)
+            .color(Color.CYAN)
+        val graylineOpt = PolylineOptions()
+            .width(12f)
+            .color(Color.GRAY)
+
+        val lineToDaan = ArrayList<LatLng>()
+        lineToDaan.add(ntunhsLocation)
+        lineToDaan.add(daanLocation)
+
+        val lineToDunhuaJunior = ArrayList<LatLng>()
+        lineToDunhuaJunior.add(ntunhsLocation)
+        lineToDunhuaJunior.add(dunhuaJuniorLocation)
+
+        val lineToDunhuaElementary = ArrayList<LatLng>()
+        lineToDunhuaElementary.add(ntunhsLocation)
+        lineToDunhuaElementary.add(dunhuaElementaryLocation)
+
+        orangelineOpt.addAll(lineToDaan)
+        cyanlineOpt.addAll(lineToDunhuaJunior)
+        graylineOpt.addAll(lineToDunhuaElementary)
+
+        mMap.addPolyline(orangelineOpt)
+        mMap.addPolyline(cyanlineOpt)
+        mMap.addPolyline(graylineOpt)
+    }
 
     override fun onStart() {
         super.onStart()
