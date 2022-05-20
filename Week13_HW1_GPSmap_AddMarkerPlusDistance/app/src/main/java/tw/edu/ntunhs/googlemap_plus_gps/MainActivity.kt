@@ -3,6 +3,7 @@ package tw.edu.ntunhs.googlemap_plus_gps
 import android.Manifest
 import android.content.*
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
@@ -46,6 +47,13 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     /// 跟踪服務的綁定狀態。
     var ServiceFlag = false
 
+    // 學校的經緯度座標
+    private val dunhuaElementaryLocation = LatLng(25.0492, 121.5481)
+    private val dunhuaJuniorLocation = LatLng(25.0509, 121.5465)
+    private val daanLocation = LatLng(25.0320, 121.5430)
+    private val ntunhsLocation = LatLng(25.11787771539104, 121.52147304364689)
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -85,21 +93,18 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     fun moveMapToNTUNHS() {
         // Add a marker in NTUNHS and move the camera
-        val ntunhs = LatLng(25.11787771539104, 121.52147304364689)
         // Taiwan: 23.9037° N, 121.0794° E
         mMap.addMarker(
             MarkerOptions()
-                .position(ntunhs)
+                .position(ntunhsLocation)
                 .title("國北護校本部")
                 .snippet("裡面居然有資訊管理系耶~")
                 .icon(BitmapDescriptorFactory.fromResource(android.R.drawable.btn_star_big_on))
                 .draggable(false))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(ntunhs))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(ntunhsLocation))
     }
 
     fun markDaanOnMap() {
-        val daanLocation = LatLng(25.0320, 121.5430)
-
         mMap.addMarker(
             MarkerOptions()
                 .title("臺北市立大安高級工業職業學校")
@@ -114,8 +119,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     fun markDunhuaJunior(){
-        val dunhuaJuniorLocation = LatLng(25.0509, 121.5465)
-
         mMap.addMarker(
             MarkerOptions()
                 .title("臺北市立敦化國民中學")
@@ -127,8 +130,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     fun markDunhuaElementary(){
-        val dunhuaElementaryLocation = LatLng(25.0492, 121.5481)
-
         mMap.addMarker(
             MarkerOptions()
                 .title("臺北市松山區敦化國民小學")
