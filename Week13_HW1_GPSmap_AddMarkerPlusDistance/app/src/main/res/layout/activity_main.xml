@@ -46,7 +46,8 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.6"
         map:cameraBearing="45"
         map:cameraTargetLat="25.118601"
         map:cameraTargetLng="121.520958"
@@ -54,5 +55,30 @@
         map:cameraZoom="13"
         map:mapType="normal"
         tools:context=".MainActivity" />
+    <!-- https://stackoverflow.com/questions/6203609/android-percentage-layout-height -->
+
+    <TextView
+            android:id="@+id/collegeDistanceOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="大學：" />
+
+        <TextView
+            android:id="@+id/seniorHighDistanceOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="高工：" />
+
+        <TextView
+            android:id="@+id/juniorHighDistanceOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="國中：" />
+
+        <TextView
+            android:id="@+id/elementaryDistanceOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="國小：" />
 
 </LinearLayout>
