@@ -33,6 +33,10 @@ private lateinit var longtitudeOutput: TextView
 private lateinit var latitudeOutput: TextView
 private lateinit var altitudeOutput: TextView
 private lateinit var addressOutput: TextView
+private lateinit var collegeDistanceText: TextView
+private lateinit var seniorHighDistanceText: TextView
+private lateinit var juniorHighDistanceText: TextView
+private lateinit var elementaryDistanceText: TextView
 private lateinit var mMap: GoogleMap
 private lateinit var gc: Geocoder
 
@@ -69,6 +73,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         latitudeOutput = findViewById(R.id.latitudeOutput)
         altitudeOutput = findViewById(R.id.heightOutput)
         addressOutput = findViewById(R.id.addressOutput)
+        collegeDistanceText = findViewById(R.id.collegeDistanceOutput)
+        seniorHighDistanceText = findViewById(R.id.seniorHighDistanceOutput)
+        juniorHighDistanceText = findViewById(R.id.juniorHighDistanceOutput)
+        elementaryDistanceText = findViewById(R.id.elementaryDistanceOutput)
 
         // 檢查是否已取得GPS定位權限
         if (!foregroundPermissionApproved()) {
@@ -384,4 +392,14 @@ fun drawLinesOnMap(){
     mMap.addPolyline(orangelineOpt)
     mMap.addPolyline(cyanlineOpt)
     mMap.addPolyline(graylineOpt)
+}
+
+// 平均地球半徑； 長軸半徑6378137m 短軸半徑6356752.314m
+var Earth_Radius = 6371000.0
+// 計算GPS兩點間之平面距離
+// 距離不大下，可用 XY2*Math.PI/180 ，但距離很遠下，用以下公式會比較準
+fun TwoGPSPointsDistance(X1: Double, Y1: Double, X2: Double, Y2: Double): Double {
+    return Earth_Radius * Math.acos(Math.sin(Y2 * Math.PI / 180) * Math.sin(Y1 * Math.PI / 180)
+            + Math.cos(Y2 * Math.PI / 180) * Math.cos(Y1 * Math.PI / 180) * Math.cos(X1 * Math.PI / 180 -
+            X2 * Math.PI / 180))
 }
