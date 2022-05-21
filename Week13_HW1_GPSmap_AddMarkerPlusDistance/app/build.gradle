@@ -9,7 +9,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "tw.edu.ntunhs.fusedlocation"
+        applicationId "tw.edu.ntunhs.GPSmap_AddMarkerPlusDistance"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1

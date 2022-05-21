@@ -1,4 +1,4 @@
-package tw.edu.ntunhs.googlemap_plus_gps
+package tw.edu.ntunhs.GPSmap_AddMarkerPlusDistance
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +9,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import tw.edu.ntunhs.googlemap_plus_gps.databinding.ActivityMapsBinding
+import tw.edu.ntunhs.GPSmap_AddMarkerPlusDistance.databinding.ActivityMapsBinding
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 

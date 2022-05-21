@@ -1,4 +1,4 @@
-package tw.edu.ntunhs.googlemap_plus_gps
+package tw.edu.ntunhs.GPSmap_AddMarkerPlusDistance
 
 import android.annotation.SuppressLint
 import android.app.ActivityManager
@@ -9,7 +9,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.location.Location
-import android.location.LocationManager
 import android.os.*
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.gms.location.*

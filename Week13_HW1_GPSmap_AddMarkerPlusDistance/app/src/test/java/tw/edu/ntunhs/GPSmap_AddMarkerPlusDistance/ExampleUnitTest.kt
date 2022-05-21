@@ -1,4 +1,4 @@
-package tw.edu.ntunhs.googlemap_plus_gps
+package tw.edu.ntunhs.GPSmap_AddMarkerPlusDistance
 
 import org.junit.Test
 

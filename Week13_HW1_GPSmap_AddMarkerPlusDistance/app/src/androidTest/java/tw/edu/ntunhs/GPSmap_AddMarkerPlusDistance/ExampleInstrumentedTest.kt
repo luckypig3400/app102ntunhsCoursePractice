@@ -1,4 +1,4 @@
-package tw.edu.ntunhs.googlemap_plus_gps
+package tw.edu.ntunhs.GPSmap_AddMarkerPlusDistance
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

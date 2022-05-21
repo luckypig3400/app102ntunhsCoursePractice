@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="tw.edu.ntunhs.googlemap_plus_gps">
+    package="tw.edu.ntunhs.GPSmap_AddMarkerPlusDistance">
 
     <!-- Required for foreground services on P+. -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- GPS -->
@@ -36,10 +36,10 @@
             android:value="AIzaSyBuSzZN5-XSMd3l__8W6YiylUihREIWqQ4" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name="tw.edu.ntunhs.GPSmap_AddMarkerPlusDistance.MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".MainActivity">
+        <activity android:name="tw.edu.ntunhs.GPSmap_AddMarkerPlusDistance.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,7 +47,7 @@
             </intent-filter>
         </activity> <!-- Required for Android 10 (API level 29) and higher. -->
         <service
-            android:name=".ForegroundService"
+            android:name="tw.edu.ntunhs.GPSmap_AddMarkerPlusDistance.ForegroundService"
             android:enabled="true"
             android:exported="true"
             android:foregroundServiceType="location" />

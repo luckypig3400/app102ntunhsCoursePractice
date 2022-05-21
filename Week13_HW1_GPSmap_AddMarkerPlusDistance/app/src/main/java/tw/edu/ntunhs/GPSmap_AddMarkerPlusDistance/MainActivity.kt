@@ -1,4 +1,5 @@
-package tw.edu.ntunhs.googlemap_plus_gps
+package tw.edu.ntunhs.GPSmap_AddMarkerPlusDistance
+// https://stackoverflow.com/questions/16804093/rename-package-in-android-studio
 
 import android.Manifest
 import android.content.*
@@ -14,7 +15,6 @@ import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
