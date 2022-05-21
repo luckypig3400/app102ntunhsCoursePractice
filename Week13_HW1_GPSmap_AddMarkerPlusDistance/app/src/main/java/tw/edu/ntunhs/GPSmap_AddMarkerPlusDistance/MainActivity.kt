@@ -239,6 +239,20 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 drawLinesOnMap()
                 moveMapToCurrentLocation(location.latitude, location.longitude)
 
+                // calculate current distance to my schools
+                collegeDistanceText.text = "大學：" +
+                        getTwoGPSPointsDistance(currantLocation, ntunhsLocation).toUInt()
+                            .toString() + "m"
+                seniorHighDistanceText.text = "高工：" +
+                        getTwoGPSPointsDistance(currantLocation, daanLocation).toUInt()
+                            .toString() + "m"
+                juniorHighDistanceText.text = "國中：" +
+                        getTwoGPSPointsDistance(currantLocation, dunhuaJuniorLocation).toUInt()
+                            .toString() + "m"
+                elementaryDistanceText.text = "國小：" +
+                        getTwoGPSPointsDistance(currantLocation, dunhuaElementaryLocation).toUInt()
+                            .toString() + "m"
+
                 // 自經緯度取得地址
                 val lstAddress: List<Address> =
                     gc.getFromLocation(location.latitude, location.longitude, 1)
@@ -400,7 +414,12 @@ var Earth_Radius = 6371000.0
 
 // 計算GPS兩點間之平面距離
 // 距離不大下，可用 XY2*Math.PI/180 ，但距離很遠下，用以下公式會比較準
-fun TwoGPSPointsDistance(X1: Double, Y1: Double, X2: Double, Y2: Double): Double {
+fun getTwoGPSPointsDistance(GPSpoint1: LatLng, GPSpoint2: LatLng): Double {
+    var X1: Double = GPSpoint1.longitude
+    var Y1: Double = GPSpoint1.latitude
+    var X2: Double = GPSpoint2.longitude
+    var Y2: Double = GPSpoint2.latitude
+
     return Earth_Radius * Math.acos(
         Math.sin(Y2 * Math.PI / 180) * Math.sin(Y1 * Math.PI / 180)
                 + Math.cos(Y2 * Math.PI / 180) * Math.cos(Y1 * Math.PI / 180) * Math.cos(
