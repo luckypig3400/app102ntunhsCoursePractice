@@ -58,27 +58,27 @@
     <!-- https://stackoverflow.com/questions/6203609/android-percentage-layout-height -->
 
     <TextView
-            android:id="@+id/collegeDistanceOutput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="大學：" />
+        android:id="@+id/collegeDistanceOutput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="大學：" />
 
-        <TextView
-            android:id="@+id/seniorHighDistanceOutput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="高工：" />
+    <TextView
+        android:id="@+id/seniorHighDistanceOutput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="高工：" />
 
-        <TextView
-            android:id="@+id/juniorHighDistanceOutput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="國中：" />
+    <TextView
+        android:id="@+id/juniorHighDistanceOutput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="國中：" />
 
-        <TextView
-            android:id="@+id/elementaryDistanceOutput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="國小：" />
+    <TextView
+        android:id="@+id/elementaryDistanceOutput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="國小：" />
 
 </LinearLayout>

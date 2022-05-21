@@ -113,7 +113,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 .title("國北護校本部")
                 .snippet("裡面居然有資訊管理系耶~")
                 .icon(BitmapDescriptorFactory.fromResource(android.R.drawable.btn_star_big_on))
-                .draggable(false))
+                .draggable(false)
+        )
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ntunhsLocation))
     }
 
@@ -131,7 +132,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 //        mMap.animateCamera(CameraUpdateFactory.newLatLng(daanLocation))
     }
 
-    fun markDunhuaJunior(){
+    fun markDunhuaJunior() {
         mMap.addMarker(
             MarkerOptions()
                 .title("臺北市立敦化國民中學")
@@ -142,7 +143,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         )
     }
 
-    fun markDunhuaElementary(){
+    fun markDunhuaElementary() {
         mMap.addMarker(
             MarkerOptions()
                 .title("臺北市松山區敦化國民小學")
@@ -353,13 +354,13 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
 }
 
-fun drawLinesOnMap(){
+fun drawLinesOnMap() {
     val yellowlineOpt = PolylineOptions()
         .width(18f)
         .color(Color.YELLOW)
     val orangelineOpt = PolylineOptions()
         .width(15f)
-        .color(Color.rgb(255,165,0))
+        .color(Color.rgb(255, 165, 0))
     val cyanlineOpt = PolylineOptions()
         .width(15f)
         .color(Color.CYAN)
@@ -396,10 +397,15 @@ fun drawLinesOnMap(){
 
 // 平均地球半徑； 長軸半徑6378137m 短軸半徑6356752.314m
 var Earth_Radius = 6371000.0
+
 // 計算GPS兩點間之平面距離
 // 距離不大下，可用 XY2*Math.PI/180 ，但距離很遠下，用以下公式會比較準
 fun TwoGPSPointsDistance(X1: Double, Y1: Double, X2: Double, Y2: Double): Double {
-    return Earth_Radius * Math.acos(Math.sin(Y2 * Math.PI / 180) * Math.sin(Y1 * Math.PI / 180)
-            + Math.cos(Y2 * Math.PI / 180) * Math.cos(Y1 * Math.PI / 180) * Math.cos(X1 * Math.PI / 180 -
-            X2 * Math.PI / 180))
+    return Earth_Radius * Math.acos(
+        Math.sin(Y2 * Math.PI / 180) * Math.sin(Y1 * Math.PI / 180)
+                + Math.cos(Y2 * Math.PI / 180) * Math.cos(Y1 * Math.PI / 180) * Math.cos(
+            X1 * Math.PI / 180 -
+                    X2 * Math.PI / 180
+        )
+    )
 }
