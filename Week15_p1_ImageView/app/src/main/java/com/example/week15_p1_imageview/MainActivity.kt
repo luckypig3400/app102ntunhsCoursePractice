@@ -50,7 +50,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     var btnOnClicked = View.OnClickListener {
-        var diceNum = input.text.toString().toInt()
+        var diceNum: Int
+        try {
+            diceNum = input.text.toString().toInt()
+        } catch (allException: Exception) {
+            diceNum = -1
+        }
 
         if (diceNum == 1)
             output.setImageResource(R.drawable.dice1)
@@ -64,6 +69,8 @@ class MainActivity : AppCompatActivity() {
             output.setImageResource(R.drawable.dice5)
         else if (diceNum == 6)
             output.setImageResource(R.drawable.dice6)
+        else
+            output.setImageResource(com.google.android.material.R.drawable.mtrl_ic_error)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
