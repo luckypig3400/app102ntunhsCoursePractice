@@ -9,12 +9,19 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.ImageView
 import com.example.week15_p1_imageview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+
+    private lateinit var btn: ImageButton
+    private lateinit var input: EditText
+    private lateinit var output: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +39,10 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+
+        btn = findViewById(R.id.imageButton)
+        input = findViewById(R.id.diceNumberInput)
+        output = findViewById(R.id.imageView)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
