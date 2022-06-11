@@ -9,10 +9,12 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import com.example.week15_p1_imageview.databinding.ActivityMainBinding
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,6 +45,25 @@ class MainActivity : AppCompatActivity() {
         btn = findViewById(R.id.imageButton)
         input = findViewById(R.id.diceNumberInput)
         output = findViewById(R.id.imageView)
+
+        btn.setOnClickListener(btnOnClicked)
+    }
+
+    var btnOnClicked = View.OnClickListener {
+        var diceNum = input.text.toString().toInt()
+
+        if (diceNum == 1)
+            output.setImageResource(R.drawable.dice1)
+        else if (diceNum == 2)
+            output.setImageResource(R.drawable.dice2)
+        else if (diceNum == 3)
+            output.setImageResource(R.drawable.dice3)
+        else if (diceNum == 4)
+            output.setImageResource(R.drawable.dice4)
+        else if (diceNum == 5)
+            output.setImageResource(R.drawable.dice5)
+        else if (diceNum == 6)
+            output.setImageResource(R.drawable.dice6)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
