@@ -41,19 +41,19 @@ class ShapeView(context: Context?) : View(context) {
             getResources(),
             R.drawable.hello5_max_w1024, null
         )!!
-        drawImg.setBounds(60, 60, getWidth() - 60, getHeight() * 1 / 2 - 60)
+        drawImg.setBounds(60, 60, width - 60, height * 1 / 2 - 60)
         drawImg.draw(canvas)
 
-        canvas.drawText("V-tex Hello White", getWidth() / 3 - 6f, getHeight() / 2 + 69f, mPaint)
+        canvas.drawText("V-tex Hello White", width / 3 - 6f, height / 2 + 69f, mPaint)
 
         ovalShape.setBounds(width / 2 - 300, height / 2, width / 2 + 300, height / 2 + 600)
         ovalShape.draw(canvas)
 
         canvas.drawLine(
             69f,
-            getHeight() / 2 - 10f,
-            getWidth() - 69f,
-            getHeight() / 2 - 10f,
+            height / 2 - 10f,
+            width - 69f,
+            height / 2 - 10f,
             linePaint
         )
     }
