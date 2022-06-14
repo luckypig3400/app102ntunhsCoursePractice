@@ -18,6 +18,7 @@ class ShapeView(context: Context?) : View(context) {
     // 為以上兩變數，設定初始設定
     init {
         ovalShape.paint.color = Color.rgb(87, 182, 208)
+        // 水藍色比較好看
 
         mPaint = Paint()
         mPaint.setAntiAlias(true)
@@ -26,7 +27,7 @@ class ShapeView(context: Context?) : View(context) {
 
         linePaint = Paint()
         linePaint.strokeWidth = 5f
-        linePaint.setColor(Color.BLUE)
+        linePaint.setColor(Color.YELLOW)
     }
 
     protected override fun onDraw(canvas: Canvas) {
@@ -61,9 +62,9 @@ class ShapeView(context: Context?) : View(context) {
 
         canvas.drawLine(
             69f,
-            height / 2 - 10f,
+            height / 2 - 30f,
             width - 69f,
-            height / 2 - 10f,
+            height / 2 - 30f,
             linePaint
         )
     }
