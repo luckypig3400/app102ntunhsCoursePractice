@@ -4,9 +4,9 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.RectF
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
+import android.graphics.drawable.shapes.RectShape
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
 
@@ -15,10 +15,13 @@ class ShapeView(context: Context?) : View(context) {
     private lateinit var mPaint: Paint
     private lateinit var linePaint: Paint
 
+    private var rectShape: ShapeDrawable = ShapeDrawable(RectShape())
+
     // 為以上兩變數，設定初始設定
     init {
         ovalShape.paint.color = Color.rgb(87, 182, 208)
-        // 水藍色比較好看
+        // 水藍色比較好看 http://zh.tacolor.com/hex/57b6d0/
+        rectShape.paint.color = Color.rgb(208, 113, 87)
 
         mPaint = Paint()
         mPaint.setAntiAlias(true)
@@ -66,6 +69,22 @@ class ShapeView(context: Context?) : View(context) {
             width - 69f,
             height / 2 - 30f,
             linePaint
+        )
+
+        rectShape.setBounds(
+            36,
+            height - 240,
+            width - 36,
+            height - 36
+        )
+        rectShape.draw(canvas)
+
+        mPaint.setColor(Color.BLACK)
+        canvas.drawText(
+            "V-TEX地表最強防水鞋，真正完全防水！",
+            width / 6 - 18f,
+            height - 168f,
+            mPaint
         )
     }
 }
